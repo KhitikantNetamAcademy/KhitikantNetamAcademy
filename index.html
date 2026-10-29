@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#11152b">
+<meta name="description" content="Khitikant Netam Academy - हिंदी GK प्रश्न उत्तर, ऑनलाइन क्विज और नोट्स।">
+<title>Khitikant Netam Academy</title>
+
+<style>
+:root{
+  --bg:#0b1020;
+  --panel:#171d38;
+  --purple:#8b5cf6;
+  --blue:#4387ff;
+  --green:#21c997;
+  --text:#f5f7ff;
+  --muted:#aab5d0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+  background:radial-gradient(ellipse at top,#30205c,var(--bg) 55%);
+  color:var(--text);line-height:1.7;
+}
+.container{width:min(1050px,92%);margin:auto}
+header{
+  position:sticky;top:0;z-index:10;
+  background:#0b1020ed;border-bottom:1px solid #ffffff20
+}
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:bold}
+.logo{
+  display:grid;place-items:center;width:44px;height:44px;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  border-radius:14px;font-size:23px
+}
+.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1px}
+.navtag{font-size:10px;color:#cbbaff}
+.hero{padding:30px 0 18px}
+.hero-box{
+  padding:clamp(22px,5vw,42px);
+  border:1px solid #ffffff20;border-radius:24px;
+  background:linear-gradient(135deg,#29204f,#182344 65%,#123b48);
+  box-shadow:0 20px 50px #0003
+}
+.tag{color:#cbbaff;font-size:12px;font-weight:bold;letter-spacing:1px}
+h1{font-size:clamp(30px,6vw,48px);line-height:1.3;margin:15px 0}
+.gradient{
+  background:linear-gradient(90deg,#c5aaff,#80b7ff,#60e6c5);
+  color:transparent;background-clip:text;-webkit-background-clip:text
+}
+p{color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.btn{
+  display:inline-block;border:0;border-radius:12px;
+  padding:12px 17px;font-weight:bold;cursor:pointer;
+  text-decoration:none;font-size:14px
+}
+.primary{background:linear-gradient(110deg,var(--purple),var(--blue));color:white}
+.secondary{background:#ffffff0c;color:white;border:1px solid #ffffff30}
+section{padding:22px 0;scroll-margin-top:85px}
+.heading{font-size:23px;margin-bottom:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat,.category,.note,.qa,.quizbox{
+  background:var(--panel);border:1px solid #ffffff18;
+  border-radius:16px;padding:17px
+}
+.stat{text-align:center}
+.stat strong{display:block;font-size:25px;color:#c5b3ff}
+.stat span{font-size:12px;color:var(--muted)}
+.categories{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.category{color:white;text-align:left;cursor:pointer}
+.category.active{border-color:var(--purple);background:#29214b}
+.category b{display:block;font-size:15px}
+.category span{font-size:12px;color:var(--muted)}
+.search,.select{
+  width:100%;padding:12px;background:#10182c;color:white;
+  border:1px solid #ffffff30;border-radius:11px;margin-bottom:12px
+}
+.select{width:auto;margin:0}
+.quizbox{padding:clamp(16px,4vw,25px)}
+.quiztop{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.progress{height:7px;background:#303951;border-radius:20px;margin:15px 0;overflow:hidden}
+.progressbar{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--green))}
+.question{font-size:21px;margin:20px 0}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.option{
+  padding:13px;text-align:left;color:white;cursor:pointer;
+  border:1px solid #ffffff25;border-radius:12px;background:#ffffff08
+}
+.option:disabled{cursor:default}
+.option.correct{border-color:var(--green);background:#21c99725}
+.option.wrong{border-color:#ff667a;background:#ff667a25}
+.explanation{
+  display:none;margin-top:15px;padding:14px;
+  background:#21c99715;border:1px solid #21c99740;border-radius:12px
+}
+.explanation.show{display:block}
+.quizbottom{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.note h3{font-size:16px;margin-bottom:7px}
+.qa-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.qa h3{font-size:15px;line-height:1.7}
+.qa p{margin-top:7px;font-size:13px}
+.qa strong{color:#c5b3ff}
+footer{border-top:1px solid #ffffff20;margin-top:25px;padding:25px 0}
+.footerlinks{display:flex;flex-wrap:wrap;gap:17px;margin:12px 0}
+.footerlinks a{font-size:13px;color:#c5b3ff}
+.hidden{display:none!important}
+@media(max-width:650px){
+ .categories,.notes,.qa-list{grid-template-columns:1fr 1fr}
+ .options{grid-template-columns:1fr}
+ .hero-box{padding:22px}
+ .heading{font-size:21px}
+}
+@media(max-width:420px){
+ .categories,.notes,.qa-list{grid-template-columns:1fr}
+ .navtag{display:none}
+ .stat{padding:10px}
+ .stat strong{font-size:21px}
+}
+@media print{
+ body{background:white;color:black}
+ header,.hero,.no-print,footer{display:none!important}
+ #questionsSection{display:block!important}
+ .qa{background:white;color:black;border:1px solid #ccc;break-inside:avoid}
+ .qa p{color:#333}
+}
+</style>
+</head>
+
+<body>
+<header class="no-print">
+ <div class="container">
+  <nav>
+   <a href="#" class="brand">
+    <span class="logo">🎓</span>
+    <span>Khitikant Netam Academy
+     <small>HINDI GK • QUIZ • LEARN</small>
+    </span>
+   </a>
+   <span class="navtag">LEARN • PRACTICE • GROW</span>
+  </nav>
+ </div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+ <div class="hero-box">
+  <div class="tag">✦ YOUR DAILY KNOWLEDGE BOOST</div>
+  <h1>ज्ञान बढ़ाओ,<br><span class="gradient">सफलता की ओर बढ़ो।</span></h1>
+  <p>हिंदी में सामान्य ज्ञान के सवाल-जवाब पढ़ें, ऑनलाइन क्विज खेलें और महत्वपूर्ण तथ्यों से अपनी तैयारी बेहतर बनाएँ।</p>
+  <div class="actions">
+   <a class="btn primary" href="#quizSection">🚀 क्विज शुरू करें</a>
+   <a class="btn secondary" href="#questionsSection">📚 सवाल-जवाब देखें</a>
+  </div>
+ </div>
+</section>
+
+<section class="no-print">
+ <h2 class="heading">📊 आपका लर्निंग डैशबोर्ड</h2>
+ <div class="stats">
+  <div class="stat"><strong id="totalStat">25</strong><span>कुल सवाल</span></div>
+  <div class="stat"><strong id="playedStat">0</strong><span>क्विज पूरे किए</span></div>
+  <div class="stat"><strong id="bestStat">0%</strong><span>बेस्ट स्कोर</span></div>
+ </div>
+</section>
+
+<section id="categoriesSection" class="no-print">
+ <h2 class="heading">📚 अपनी कैटेगरी चुनें</h2>
+ <div class="categories">
+  <button class="category active" data-category="all" onclick="selectCategory('all',this)">
+   <b>🌟 सभी विषय</b><span>मिक्स सामान्य ज्ञान</span>
+  </button>
+  <button class="category" data-category="india" onclick="selectCategory('india',this)">
+   <b>🇮🇳 भारत GK</b><span>भारत से जुड़े सवाल</span>
+  </button>
+  <button class="category" data-category="history" onclick="selectCategory('history',this)">
+   <b>🏛️ इतिहास</b><span>ऐतिहासिक तथ्य</span>
+  </button>
+  <button class="category" data-category="geography" onclick="selectCategory('geography',this)">
+   <b>🌍 भूगोल</b><span>देश और दुनिया</span>
+  </button>
+  <button class="category" data-category="science" onclick="selectCategory('science',this)">
+   <b>🔬 विज्ञान</b><span>विज्ञान के सवाल</span>
+  </button>
+  <button class="category" data-category="constitution" onclick="selectCategory('constitution',this)">
+   <b>⚖️ संविधान</b><span>भारतीय संविधान</span>
+  </button>
+  <button class="category" data-category="cg" onclick="selectCategory('cg',this)">
+   <b>🌾 छत्तीसगढ़ GK</b><span>अपने राज्य का ज्ञान</span>
+  </button>
+ </div>
+</section>
+
+<section id="quizSection" class="no-print">
+ <h2 class="heading">🎯 ऑनलाइन GK क्विज</h2>
+ <div class="quizbox">
+  <div class="quiztop">
+   <span id="categoryName">🌟 सभी विषय</span>
+   <label>सवालों की संख्या:
+    <select id="questionCount" class="select">
+     <option value="10">10</option>
+     <option value="15">15</option>
+     <option value="20">20</option>
+     <option value="all">सभी</option>
+    </select>
+   </label>
+  </div>
+  <div class="quizbottom">
+   <span id="progressText">क्विज शुरू करने के लिए तैयार?</span>
+   <span id="progressPercent">0%</span>
+  </div>
+  <div class="progress"><div id="progressBar" class="progressbar"></div></div>
+  <div id="quizArea">
+   <h3>अपना ज्ञान टेस्ट करें!</h3>
+   <p>सही जवाब चुनें और हर सवाल की व्याख्या पढ़ें।</p>
+   <div class="actions">
+    <button class="btn primary" onclick="startQuiz()">क्विज शुरू करें →</button>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="notesSection">
+ <h2 class="heading">📖 GK Notes & Important Facts</h2>
+ <div class="notes">
+  <article class="note">
+   <h3>🇮🇳 भारतीय सामान्य ज्ञान</h3>
+   <p>भारत की राजधानी नई दिल्ली है। भारतीय संविधान 26 जनवरी 1950 को लागू हुआ। भारत का स्वतंत्रता दिवस 15 अगस्त को मनाया जाता है।</p>
+  </article>
+  <article class="note">
+   <h3>🌍 भूगोल के तथ्य</h3>
+   <p>प्रशांत महासागर दुनिया का सबसे बड़ा महासागर है। राजस्थान क्षेत्रफल के आधार पर भारत का सबसे बड़ा राज्य है।</p>
+  </article>
+  <article class="note">
+   <h3>🌾 छत्तीसगढ़ GK</h3>
+   <p>छत्तीसगढ़ राज्य का गठन 1 नवंबर 2000 को हुआ। रायपुर इसकी राजधानी है। इसे धान का कटोरा भी कहा जाता है।</p>
+  </article>
+ </div>
+</section>
+
+<section id="questionsSection">
+ <h2 class="heading">📝 महत्वपूर्ण प्रश्न और उत्तर</h2>
+ <p>प्रश्न खोजें या सूची को PDF में सेव करें।</p>
+ <input id="searchInput" class="search no-print" placeholder="🔎 प्रश्न खोजें..." oninput="renderQuestions()">
+ <div class="actions no-print" style="margin:0 0 15px">
+  <button class="btn primary" onclick="window.print()">📄 PDF / Print करें</button>
+ </div>
+ <div id="questionsList" class="qa-list"></div>
+</section>
+
+</main>
+
+<footer>
+ <div class="container">
+  <div class="brand">🎓 Khitikant Netam Academy</div>
+  <p>हिंदी में सामान्य ज्ञान सीखने और अभ्यास करने का सरल प्लेटफॉर्म।</p>
+  <div class="footerlinks">
+   <a href="about.html">About Us</a>
+   <a href="contact.html">Contact Us</a>
+   <a href="privacy.html">Privacy Policy</a>
+  </div>
+  <p>© <span id="year"></span> Khitikant Netam Academy. All rights reserved.</p>
+ </div>
+</footer>
+
+<script>
+const questions = [
+{c:"india",q:"भारत की राजधानी क्या है?",o:["मुंबई","नई दिल्ली","कोलकाता","चेन्नई"],a:1,e:"नई दिल्ली भारत की राजधानी है।"},
+{c:"india",q:"भारत का राष्ट्रीय पशु कौन है?",o:["शेर","हाथी","बाघ","तेंदुआ"],a:2,e:"बाघ भारत का राष्ट्रीय पशु है।"},
+{c:"india",q:"भारत का राष्ट्रीय फूल कौन-सा है?",o:["गुलाब","कमल","चमेली","सूरजमुखी"],a:1,e:"कमल भारत का राष्ट्रीय फूल है।"},
+{c:"india",q:"भारत का राष्ट्रीय गान किसने लिखा?",o:["प्रेमचंद","रवींद्रनाथ टैगोर","बंकिमचंद्र","महात्मा गांधी"],a:1,e:"जन गण मन की रचना रवींद्रनाथ टैगोर ने की थी।"},
+{c:"india",q:"भारत की मुद्रा क्या है?",o:["टका","रुपया","दीनार","युआन"],a:1,e:"भारत की मुद्रा भारतीय रुपया है।"},
+{c:"india",q:"भारत का स्वतंत्रता दिवस कब है?",o:["26 जनवरी","15 अगस्त","2 अक्टूबर","14 नवंबर"],a:1,e:"भारत 15 अगस्त 1947 को स्वतंत्र हुआ।"},
+{c:"history",q:"भारत को स्वतंत्रता किस वर्ष मिली?",o:["1942","1945","1947","1950"],a:2,e:"भारत 15 अगस्त 1947 को स्वतंत्र हुआ।"},
+{c:"history",q:"ताजमहल किसने बनवाया?",o:["अकबर","शाहजहाँ","जहाँगीर","हुमायूँ"],a:1,e:"मुगल सम्राट शाहजहाँ ने ताजमहल बनवाया था।"},
+{c:"history",q:"भारत छोड़ो आंदोलन किस वर्ष शुरू हुआ?",o:["1920","1930","1942","1947"],a:2,e:"भारत छोड़ो आंदोलन 1942 में शुरू हुआ।"},
+{c:"history",q:"1857 के विद्रोह को किस नाम से भी जाना जाता है?",o:["स्वदेशी आंदोलन","भारत छोड़ो आंदोलन","प्रथम स्वतंत्रता संग्राम","असहयोग आंदोलन"],a:2,e:"1857 के विद्रोह को प्रथम स्वतंत्रता संग्राम भी कहा जाता है।"},
+{c:"geography",q:"क्षेत्रफल के आधार पर भारत का सबसे बड़ा राज्य कौन-सा है?",o:["मध्य प्रदेश","राजस्थान","उत्तर प्रदेश","महाराष्ट्र"],a:1,e:"राजस्थान क्षेत्रफल के आधार पर भारत का सबसे बड़ा राज्य है।"},
+{c:"geography",q:"विश्व का सबसे बड़ा महासागर कौन-सा है?",o:["हिंद महासागर","अटलांटिक","प्रशांत महासागर","आर्कटिक"],a:2,e:"प्रशांत महासागर विश्व का सबसे बड़ा महासागर है।"},
+{c:"geography",q:"पृथ्वी का प्राकृतिक उपग्रह कौन है?",o:["मंगल","चंद्रमा","शुक्र","सूर्य"],a:1,e:"चंद्रमा पृथ्वी का प्राकृतिक उपग्रह है।"},
+{c:"science",q:"पानी का रासायनिक सूत्र क्या है?",o:["CO₂","O₂","H₂O","NaCl"],a:2,e:"पानी के एक अणु में दो हाइड्रोजन और एक ऑक्सीजन परमाणु होता है।"},
+{c:"science",q:"पौधे प्रकाश संश्लेषण में कौन-सी गैस लेते हैं?",o:["ऑक्सीजन","कार्बन डाइऑक्साइड","हाइड्रोजन","नाइट्रोजन"],a:1,e:"पौधे प्रकाश संश्लेषण के दौरान कार्बन डाइऑक्साइड का उपयोग करते हैं।"},
+{c:"science",q:"रक्त पंप करने वाला अंग कौन-सा है?",o:["फेफड़ा","गुर्दा","हृदय","यकृत"],a:2,e:"हृदय रक्त को पूरे शरीर में पंप करता है।"},
+{c:"science",q:"सूर्य के सबसे निकट कौन-सा ग्रह है?",o:["शुक्र","पृथ्वी","बुध","मंगल"],a:2,e:"बुध सूर्य के सबसे निकट स्थित ग्रह है।"},
+{c:"constitution",q:"भारत का संविधान कब लागू हुआ?",o:["15 अगस्त 1947","26 जनवरी 1950","26 नवंबर 1949","2 अक्टूबर 1950"],a:1,e:"भारतीय संविधान 26 जनवरी 1950 को लागू हुआ।"},
+{c:"constitution",q:"संविधान की प्रारूप समिति के अध्यक्ष कौन थे?",o:["जवाहरलाल नेहरू","डॉ. बी.आर. आंबेडकर","डॉ. राजेंद्र प्रसाद","सरदार पटेल"],a:1,e:"डॉ. भीमराव आंबेडकर प्रारूप समिति के अध्यक्ष थे।"},
+{c:"constitution",q:"भारत में मतदान की न्यूनतम आयु कितनी है?",o:["16 वर्ष","18 वर्ष","21 वर्ष","25 वर्ष"],a:1,e:"भारत में सामान्य चुनावों में मतदान की न्यूनतम आयु 18 वर्ष है।"},
+{c:"cg",q:"छत्तीसगढ़ राज्य का गठन कब हुआ?",o:["1 नवंबर 2000","1 मई 1960","15 अगस्त 1947","26 जनवरी 1950"],a:0,e:"छत्तीसगढ़ 1 नवंबर 2000 को मध्य प्रदेश से अलग होकर राज्य बना।"},
+{c:"cg",q:"छत्तीसगढ़ की राजधानी क्या है?",o:["बिलासपुर","दुर्ग","रायपुर","जगदलपुर"],a:2,e:"रायपुर छत्तीसगढ़ की राजधानी है।"},
+{c:"cg",q:"छत्तीसगढ़ को किस नाम से जाना जाता है?",o:["चाय का राज्य","धान का कटोरा","रेगिस्तान का राज्य","पहाड़ों की भूमि"],a:1,e:"धान की व्यापक खेती के कारण छत्तीसगढ़ को धान का कटोरा कहा जाता है।"},
+{c:"india",q:"भारत के प्रथम राष्ट्रपति कौन थे?",o:["डॉ. राजेंद्र प्रसाद","डॉ. राधाकृष्णन","जवाहरलाल नेहरू","सरदार पटेल"],a:0,e:"डॉ. राजेंद्र प्रसाद भारत के प्रथम राष्ट्रपति थे।"},
+{c:"science",q:"सौरमंडल का सबसे बड़ा ग्रह कौन-सा है?",o:["पृथ्वी","शनि","बृहस्पति","मंगल"],a:2,e:"बृहस्पति सौरमंडल का सबसे बड़ा ग्रह है।"}
+];
+
+const categoryNames={
+ all:"🌟 सभी विषय",india:"🇮🇳 भारत GK",
+ history:"🏛️ इतिहास",geography:"🌍 भूगोल",
+ science:"🔬 विज्ञान",constitution:"⚖️ संविधान",
+ cg:"🌾 छत्तीसगढ़ GK"
+};
+
+let category="all",quizQuestions=[],index=0,score=0,answered=false;
+
+function selectCategory(cat,el){
+ category=cat;
+ document.querySelectorAll(".category").forEach(b=>b.classList.remove("active"));
+ if(el)el.classList.add("active");
+ document.getElementById("categoryName").textContent=categoryNames[cat];
+}
+
+function startQuiz(){
+ const pool=category==="all"?questions:questions.filter(q=>q.c===category);
+ const amount=document.getElementById("questionCount").value;
+ quizQuestions=[...pool].sort(()=>Math.random()-.5);
+ if(amount!=="all")quizQuestions=quizQuestions.slice(0,Number(amount));
+ index=0;score=0;
+ renderQuestion();
+}
+
+function renderQuestion(){
+ if(index>=quizQuestions.length){showResult();return}
+ answered=false;
+ const q=quizQuestions[index];
+ const percent=Math.round(index/quizQuestions.length*100);
+ document.getElementById("progressText").textContent=
+ "सवाल "+(index+1)+" / "+quizQuestions.length;
+ document.getElementById("progressPercent").textContent=percent+"%";
+ document.getElementById("progressBar").style.width=percent+"%";
+ document.getElementById("quizArea").innerHTML=`
+ <div class="tag">QUESTION ${index+1}</div>
+ <h3 class="question">${q.q}</h3>
+ <div class="options">
+ ${q.o.map((op,i)=>`<button class="option" onclick="checkAnswer(${i})">${String.fromCharCode(65+i)}. ${op}</button>`).join("")}
+ </div>
+ <div class="explanation" id="explanation"></div>
+ <div class="quizbottom">
+ <span id="feedback">एक सही विकल्प चुनें।</span>
+ <button id="nextBtn" class="btn primary" disabled onclick="nextQuestion()">अगला सवाल →</button>
+ </div>`;
+}
+
+function checkAnswer(choice){
+ if(answered)return;
+ answered=true;
+ const q=quizQuestions[index];
+ const buttons=document.querySelectorAll(".option");
+ buttons.forEach((b,i)=>{
+  b.disabled=true;
+  if(i===q.a)b.classList.add("correct");
+ });
+ if(choice===q.a){
+  score++;
+  document.getElementById("feedback").textContent="शानदार! जवाब सही है 🎉";
+ }else{
+  buttons[choice].classList.add("wrong");
+  document.getElementById("feedback").textContent="कोई बात नहीं! सही जवाब हरे रंग में है।";
+ }
+ const exp=document.getElementById("explanation");
+ exp.classList.add("show");
+ exp.innerHTML="<strong>सही जवाब:</strong> "+q.o[q.a]+
+ "<br><strong>व्याख्या:</strong> "+q.e;
+ document.getElementById("nextBtn").disabled=false;
+ const percent=Math.round((index+1)/quizQuestions.length*100);
+ document.getElementById("progressPercent").textContent=percent+"%";
+ document.getElementById("progressBar").style.width=percent+"%";
+}
+
+function nextQuestion(){
+ if(!answered)return;
+ index++;
+ renderQuestion();
+}
+
+function showResult(){
+ const percent=Math.round(score/quizQuestions.length*100);
+ const played=Number(localStorage.getItem("knaPlayed")||0)+1;
+ const best=Math.max(Number(localStorage.getItem("knaBest")||0),percent);
+ localStorage.setItem("knaPlayed",played);
+ localStorage.setItem("knaBest",best);
+ updateStats();
+ document.getElementById("progressText").textContent="क्विज पूरा हुआ!";
+ document.getElementById("progressPercent").textContent="100%";
+ document.getElementById("progressBar").style.width="100%";
+ let message=percent>=80?"शानदार प्रदर्शन! 🏆":
+ percent>=50?"बहुत अच्छा! अभ्यास जारी रखें। 💪":
+ "अच्छी शुरुआत! फिर से कोशिश करें। 📚";
+ document.getElementById("quizArea").innerHTML=`
+ <div style="text-align:center;padding:18px 0">
+ <div style="font-size:48px">🏆</div>
+ <h2>क्विज पूरा हुआ!</h2>
+ <h1 class="gradient">${score}/${quizQuestions.length}</h1>
+ <p>आपका स्कोर ${percent}%</p>
+ <p>${message}</p>
+ <div class="actions" style="justify-content:center">
+ <button class="btn primary" onclick="startQuiz()">फिर से खेलें ↻</button>
+ </div></div>`;
+}
+
+function updateStats(){
+ document.getElementById("totalStat").textContent=questions.length;
+ document.getElementById("playedStat").textContent=localStorage.getItem("knaPlayed")||0;
+ document.getElementById("bestStat").textContent=(localStorage.getItem("knaBest")||0)+"%";
+}
+
+function renderQuestions(){
+ const term=document.getElementById("searchInput").value.trim().toLowerCase();
+ const filtered=questions.filter(q=>
+  (q.q+" "+q.o[q.a]+" "+q.e).toLowerCase().includes(term)
+ );
+ document.getElementById("questionsList").innerHTML=filtered.map((q,i)=>`
+ <article class="qa">
+ <h3>प्रश्न: ${q.q}</h3>
+ <p><strong>उत्तर:</strong> ${q.o[q.a]}</p>
+ <p><strong>व्याख्या:</strong> ${q.e}</p>
+ </article>`).join("")||"<p>कोई सवाल नहीं मिला।</p>";
+}
+
+document.getElementById("year").textContent=new Date().getFullYear();
+updateStats();
+renderQuestions();
+</script>
+</body>
+     </html>
